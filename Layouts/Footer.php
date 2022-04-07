@@ -13,7 +13,7 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.css"
   rel="stylesheet"
 />
-<footer class="bg-light text-center text-white">
+<footer class="bg-light text-center text-white" style="margin-top: 100px;">
   <!-- Grid container -->
   <div class="container p-4 pb-0">
     <!-- Section: Social media -->

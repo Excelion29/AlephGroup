@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include_once('../public/css/data-table.php')?>
-    <title>F-LSD012</title> 
-</head>
-<body>
+
   <form action="" method="POST">
     <div class="swiper-slide">
       <div class="card-body">
@@ -23,12 +14,11 @@
             </div>
           </div>
 
-          <a type="button" style="float: right; color:white;" rel="tooltip" onclick="addRow()" class="btn btn-success " data-original-title="" title="">
-            Añadir Tasa</i>
-          </a>
         </body>
         <div class="card-footer">
-          
+          <a type="button" style="float: right; color:white;" rel="tooltip" onclick="addRow()" class="btn btn-success " data-original-title="" title="">
+            Añadir Tasa</i>
+          </a>          
           <input type="hidden" name="consulta" value="tasaVCV">
           <button type="submit" class="btn btn-primary btn-round" >Guardar</button>
         </div>
@@ -64,6 +54,13 @@
             </thead>
             <tbody> 
                 <?php   
+                  function getVariance($avg, $list){
+                    $total_var = 0;
+                    foreach ($list as $key => $value) {
+                      $total_var += pow(($value - $avg),2);
+                    }
+                    return sqrt($total_var/(count($list)-1));
+                  };
                   if(isset($_POST['tasaVCV'])){
                     switch ($_POST['consulta']) {
                         case 'tasaVCV':
@@ -79,6 +76,8 @@
                             $LT9 = $_POST['LT9'];
                             $LT10 = $_POST['LT10'];
                             $unidad = $_POST['unidad'];
+                            
+                            $conv_u = [1000,1000000,10000,10,0.01,10000,10,1000000];
 
                             foreach ($tasaVCV as $key => $value) {
                               $array[] = array(
@@ -97,6 +96,56 @@
                               );
                             };                            
                             foreach ($array as $key =>$value){
+                              $LTS = array($value['LT1'],$value['LT2'],$value['LT3'],$value['LT4'],$value['LT5'],$value['LT6'],$value['LT7'],$value['LT8'],$value['LT9'],$value['LT10']);
+                              $minimo_array = min($LTS);                              
+                              $digitos = strlen(substr(strrchr($minimo_array, "."), 1));
+                              if ($digitos == 0) {
+                                $minimo = 1;
+                              }
+                              elseif ($digitos == 1) {
+                                $minimo = 0.1;
+                              }
+                              elseif ($digitos == 2) {
+                                $minimo = 0.01;
+                              }else{
+
+                              }
+                              $promedio = array_sum($LTS)/count($LTS);
+
+                              $desv_stand = number_format(getVariance($promedio,$LTS),2);
+                              $CV = number_format(($desv_stand/$promedio*100),2);
+                              $Factor_K = $conv_u[0];
+
+                              if ($value['unidad'] == "µSv") {
+                                $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[0];
+                              } 
+                              elseif ($value['unidad'] == "mSv") {
+                                $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[1];
+                              } 
+                              elseif ($value['unidad'] == "Sv") {
+                                $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[2];
+                              } 
+                              elseif ($value['unidad'] == "R") {
+                                $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[3];
+                              } 
+                              elseif ($value['unidad'] == "mR") {
+                                $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[4];
+                              } 
+                              elseif ($value['unidad'] == "µR") {
+                                $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[5];
+                              } 
+                              elseif ($value['unidad'] == "rem") {
+                                $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[6];
+                              } 
+                              elseif ($value['unidad'] == "mrem") {
+                                $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[7];
+                              } 
+                              else {
+                                $Factor_K = "Variable no encontrada";
+                              }
+
+                              
+
                               echo 
                               '<tr>
                                 <td>'.$key.'</td>
@@ -111,8 +160,12 @@
                                 <td>'.$value['LT8'].'</td>
                                 <td>'.$value['LT9'].'</td>
                                 <td>'.$value['LT10'].'</td>
-                                <td>'.'</td>
+                                <td>'.$minimo .'</td>
                                 <td>'.$value['unidad'].'</td>
+                                <td>'.$promedio.'</td>
+                                <td>'.$desv_stand.'</td>
+                                <td>'.$CV.'</td>
+                                <td>'.$Factor_K.'</td>
                               </tr>';
                             }
                         break;
@@ -128,9 +181,6 @@
             </tbody>
         </table>
   </div>
-  <?php include_once('../Layouts/Footer.php')?>
-</body>
-
 <script>
     var arrHead = new Array();
     arrHead = ['', 'Tasa VCV','Lectura 1', 'Lectura 2','Lectura 3', 'Lectura 4', 'Lectura 5', 'Lectura 6', 'Lectura 7', 'Lectura 8', 'Lectura 9', 'Lectura 10', 'Unidad'];
@@ -149,8 +199,7 @@
             tr.appendChild(th);
           }
           var div = document.getElementById('cont');
-          div.appendChild(empTable); 
+          div.appendChild(empTable);           
       };
   </script>
-<script src="../Public/JS/table-create.js"></script>
-</html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
