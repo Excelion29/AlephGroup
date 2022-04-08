@@ -177,131 +177,8 @@
                   </tr>
               </thead>
               <tbody> 
-                  <?php   
-                    function getVariance($avg, $list){
-                      $total_var = 0;
-                      foreach ($list as $key => $value) {
-                        $total_var += pow(($value - $avg),2);
-                      }
-                      return sqrt($total_var/(count($list)-1));
-                    };
-                    if(isset($_POST['tasaVCV'])){
-                      switch ($_POST['consultalsd12']) {
-                          case 'tasaVCVlsd12':
-                              $tasaVCV = $_POST['tasaVCV'];
-                              $LT1 = $_POST['LT1'];
-                              $LT2 = $_POST['LT2'];
-                              $LT3 = $_POST['LT3'];
-                              $LT4 = $_POST['LT4'];
-                              $LT5 = $_POST['LT5'];
-                              $LT6 = $_POST['LT6'];
-                              $LT7 = $_POST['LT7'];
-                              $LT8 = $_POST['LT8'];
-                              $LT9 = $_POST['LT9'];
-                              $LT10 = $_POST['LT10'];
-                              $unidad = $_POST['unidad'];
-                              
-                              $conv_u = [1000,1000000,10000,10,0.01,10000,10,1000000];
+                 
 
-                              foreach ($tasaVCV as $key => $value) {
-                                $array[] = array(
-                                  'tasaVCV' =>  $tasaVCV[$key],
-                                  'LT1' =>  $LT1[$key],
-                                  'LT2' =>  $LT2[$key],
-                                  'LT3' =>  $LT3[$key],
-                                  'LT4' =>  $LT4[$key],
-                                  'LT5' =>  $LT5[$key],
-                                  'LT6' =>  $LT6[$key],
-                                  'LT7' =>  $LT7[$key],
-                                  'LT8' =>  $LT8[$key],
-                                  'LT9' =>  $LT9[$key],
-                                  'LT10' => $LT10[$key],
-                                  'unidad' => $unidad[$key]
-                                );
-                              };                            
-                              foreach ($array as $key =>$value){
-                                $LTS = array($value['LT1'],$value['LT2'],$value['LT3'],$value['LT4'],$value['LT5'],$value['LT6'],$value['LT7'],$value['LT8'],$value['LT9'],$value['LT10']);
-                                $minimo_array = min($LTS);                              
-                                $digitos = strlen(substr(strrchr($minimo_array, "."), 1));
-                                if ($digitos == 0) {
-                                  $minimo = 1;
-                                }
-                                elseif ($digitos == 1) {
-                                  $minimo = 0.1;
-                                }
-                                elseif ($digitos == 2) {
-                                  $minimo = 0.01;
-                                }else{
-
-                                }
-                                $promedio = array_sum($LTS)/count($LTS);
-
-                                $desv_stand = number_format(getVariance($promedio,$LTS),2);
-                                $CV = number_format(($desv_stand/$promedio*100),2);
-                                $Factor_K = $conv_u[0];
-
-                                if ($value['unidad'] == "µSv") {
-                                  $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[0];
-                                } 
-                                elseif ($value['unidad'] == "mSv") {
-                                  $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[1];
-                                } 
-                                elseif ($value['unidad'] == "Sv") {
-                                  $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[2];
-                                } 
-                                elseif ($value['unidad'] == "R") {
-                                  $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[3];
-                                } 
-                                elseif ($value['unidad'] == "mR") {
-                                  $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[4];
-                                } 
-                                elseif ($value['unidad'] == "µR") {
-                                  $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[5];
-                                } 
-                                elseif ($value['unidad'] == "rem") {
-                                  $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[6];
-                                } 
-                                elseif ($value['unidad'] == "mrem") {
-                                  $Factor_K = ($value["tasaVCV"]/$promedio)*$conv_u[7];
-                                } 
-                                else {
-                                  $Factor_K = "Variable no encontrada";
-                                }
-
-                                
-
-                                echo 
-                                '<tr>
-                                  <td>'.$key.'</td>
-                                  <td>'.$value['tasaVCV'].'</td>
-                                  <td>'.$value['LT1'].'</td>
-                                  <td>'.$value['LT2'].'</td>
-                                  <td>'.$value['LT3'].'</td>
-                                  <td>'.$value['LT4'].'</td>
-                                  <td>'.$value['LT5'].'</td>
-                                  <td>'.$value['LT6'].'</td>
-                                  <td>'.$value['LT7'].'</td>
-                                  <td>'.$value['LT8'].'</td>
-                                  <td>'.$value['LT9'].'</td>
-                                  <td>'.$value['LT10'].'</td>
-                                  <td>'.$minimo .'</td>
-                                  <td>'.$value['unidad'].'</td>
-                                  <td>'.$promedio.'</td>
-                                  <td>'.$desv_stand.'</td>
-                                  <td>'.$CV.'</td>
-                                  <td>'.$Factor_K.'</td>
-                                </tr>';
-                              }
-                          break;
-                      }
-                    }
-                    else{
-                      echo 
-                      '<td colspan="18" style="text-align:center"> 
-                        Data Nula
-                      </td>';
-                    }
-                  ?>
               </tbody>
           </table>
       </div> -->
@@ -374,6 +251,7 @@
                   ele.setAttribute('required','true');
                   ele.setAttribute('id', 'LT1'+s);
                   ele.setAttribute('name', 'LT1[]');
+                  ele.setAttribute('value','0.01');
                   td.appendChild(ele);     
                   
 
@@ -386,6 +264,7 @@
                   ele.setAttribute('required','true');
                   ele.setAttribute('id', 'LT2'+s);
                   ele.setAttribute('name', 'LT2[]');
+                  ele.setAttribute('value','0.01');
                   td.appendChild(ele);           
               }
               if (c == 3){
@@ -396,6 +275,7 @@
                   ele.setAttribute('required','true');
                   ele.setAttribute('id', 'LT3'+s);
                   ele.setAttribute('name', 'LT3[]');
+                  ele.setAttribute('value','0.01');
                   td.appendChild(ele);            
               }
               if (c == 4){
@@ -405,6 +285,7 @@
                   ele.setAttribute('placeholder', 'L4');
                   ele.setAttribute('required','true');
                   ele.setAttribute('id', 'LT4'+s);
+                  ele.setAttribute('value','0.01');
                   ele.setAttribute('name', 'LT4[]');
                   td.appendChild(ele);            
               }
@@ -415,6 +296,7 @@
                   ele.setAttribute('placeholder', 'L5');
                   ele.setAttribute('required','true');
                   ele.setAttribute('id', 'LT5'+s);
+                  ele.setAttribute('value','0.01');
                   ele.setAttribute('name', 'LT5[]');
                   td.appendChild(ele);            
               }
@@ -426,6 +308,7 @@
                   ele.setAttribute('required','true');
                   ele.setAttribute('id', 'LT6'+s);
                   ele.setAttribute('name', 'LT6[]');
+                  ele.setAttribute('value','0.01');
                   td.appendChild(ele);            
               }
               if (c == 7){
@@ -436,6 +319,7 @@
                   ele.setAttribute('required','true');
                   ele.setAttribute('id', 'LT7'+s);
                   ele.setAttribute('name', 'LT7[]');
+                  ele.setAttribute('value','0.01');
                   td.appendChild(ele);            
               }
               if (c == 8){
@@ -446,6 +330,7 @@
                   ele.setAttribute('required','true');
                   ele.setAttribute('id', 'LT8'+s);
                   ele.setAttribute('name', 'LT8[]');
+                  ele.setAttribute('value','0.01');
                   td.appendChild(ele);  
               }
               if (c == 9){
@@ -456,6 +341,7 @@
                   ele.setAttribute('required','true');
                   ele.setAttribute('id', 'LT9'+s);
                   ele.setAttribute('name', 'LT9[]');
+                  ele.setAttribute('value','0.01');
                   td.appendChild(ele);  
               }
               if (c == 10){
@@ -466,6 +352,7 @@
                   ele.setAttribute('required','true');
                   ele.setAttribute('id', 'LT10'+s);
                   ele.setAttribute('name', 'LT10[]');
+                  ele.setAttribute('value','0.01');
                   td.appendChild(ele);  
               }
               if (c == 11){
@@ -545,26 +432,42 @@
     arrHeadLSCD12 = ['Tasa VCV','Lectura 1', 'Lectura 2','Lectura 3', 'Lectura 4', 'Lectura 5', 'Lectura 6', 'Lectura 7', 'Lectura 8', 'Lectura 9', 'Lectura 10', 'Unidad',"Promedio","D.S.","C.V.","Factor K"];
     var arrayLt = new Array();
     var unidad = new Array();
+    var promedio = new Array();
+    var suma =0;
     $(function() {
       $(".button").click(function() {
         
         for (let position = 0; position < jsvar.length; position++) {
             arrayLt[position] ={
-              "LT1" : document.getElementById('LT1'+position).value,
-              "LT2" : document.getElementById('LT2'+position).value,
-              "LT3" : document.getElementById('LT3'+position).value,
-              "LT4" : document.getElementById('LT4'+position).value,
-              "LT5" : document.getElementById('LT5'+position).value,
-              "LT6" : document.getElementById('LT6'+position).value,
-              "LT7" : document.getElementById('LT7'+position).value,
-              "LT8" : document.getElementById('LT8'+position).value,
-              "LT9" : document.getElementById('LT9'+position).value,
-              "LT10" : document.getElementById('LT10'+position).value,
+              "LT1" : parseFloat(document.getElementById('LT1'+position).value),
+              "LT2" : parseFloat(document.getElementById('LT2'+position).value),
+              "LT3" : parseFloat(document.getElementById('LT3'+position).value),
+              "LT4" : parseFloat(document.getElementById('LT4'+position).value),
+              "LT5" : parseFloat(document.getElementById('LT5'+position).value),
+              "LT6" : parseFloat(document.getElementById('LT6'+position).value),
+              "LT7" : parseFloat(document.getElementById('LT7'+position).value),
+              "LT8" : parseFloat(document.getElementById('LT8'+position).value),
+              "LT9" : parseFloat(document.getElementById('LT9'+position).value),
+              "LT10" : parseFloat(document.getElementById('LT10'+position).value),
             };
             unidad[position] ={
               "Unidad" : document.getElementById('unidad'+position).value,
+            };
+            for (let i = 0; i < 10; i++) {
+              // console.log(arrayLt[position]["LT"+i]);
+              // suma += arrayLt[position]["LT"+i]
             }
-        }      
+            console.log(arrayLt);
+        };
+        // console.log(arrayLt);
+        // var sum = 0;
+        // for( var el in arrayLt[0] ) {
+        //   if( arrayLt[0].hasOwnProperty( el ) ) {
+        //     sum += parseFloat( arrayLt[0][el] );
+        //   }
+        // }
+        
+        // console.log(typeof(arrayLt[0]["LT1"]));
         addRowRLSCD012();
       });
     });
@@ -591,11 +494,9 @@
       var tr = empTab.insertRow(rowCnt); 
       var suma_arrays = 0; 
       for (let s = 0; s < jsvar.length; s++) {
+        var lengthLT = Object.keys(arrayLt[s]).length;
         var tr = LSCD12.insertRow(rowCnt);
-        var td = document.createElement('td');        
-        // for (var key in arrayLt[s]) {
-        //   suma_arrays += arrayLt[s][key];
-        // };
+        var td = document.createElement('td'); 
         for (let c = 0; c < arrHeadLSCD12.length; c++) {
           td = tr.insertCell(c);
           if (c == 0) {
