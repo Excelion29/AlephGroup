@@ -32,7 +32,7 @@
     </div>
     <!--Container Main start-->
     <div class="height-100 bg-light">
-        <div id="LSCD03"  class="flujo" style="display: block;"><?php include_once ('../../Functions/F-LSCD-03.php')?></div>
+        <div id="LSCD03"  class="flujo" style="display: block; margin-top:90px;"><?php include_once ('../../Functions/F-LSCD-03.php')?></div>
     </div>
     <!--Container Main end-->
   <?php include_once('../Footer.php')?>
