@@ -1,0 +1,17 @@
+.float-start{
+    float: left;
+}
+
+.float-end{
+    float: right;
+}
+.content{
+    margin-top: 190px;
+}
+.table{
+    text-align: center;
+}
+.image{
+    position: absolute; 
+    margin-top: -180px; width: 100%;
+}
