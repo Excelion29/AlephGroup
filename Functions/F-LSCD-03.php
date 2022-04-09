@@ -433,6 +433,7 @@
     var arrayLt = new Array();
     var unidad = new Array();
     var promedio = new Array();
+    var desv_stand = new Array();
     var suma =0;
     $(function() {
       $(".button").click(function() {
@@ -453,24 +454,48 @@
             unidad[position] ={
               "Unidad" : document.getElementById('unidad'+position).value,
             };
-            for (let i = 0; i < 10; i++) {
-              // console.log(arrayLt[position]["LT"+i]);
-              // suma += arrayLt[position]["LT"+i]
+
+            var lengthLT = Object.keys(arrayLt[position]).length;
+            promedio[position] ={
+              "promedio" : (promedioLT(position)[0]+promedioLT(position)[1]+promedioLT(position)[2]+promedioLT(position)[3]+promedioLT(position)[4]+promedioLT(position)[5]+promedioLT(position)[6]+promedioLT(position)[7]+promedioLT(position)[8]+promedioLT(position)[9]).toFixed(2)/lengthLT
             }
-            console.log(arrayLt);
+            desv_stand[position] ={
+              "desv_stand" : dev(promedioLT(position))
+            }
+            
+            
         };
-        // console.log(arrayLt);
-        // var sum = 0;
-        // for( var el in arrayLt[0] ) {
-        //   if( arrayLt[0].hasOwnProperty( el ) ) {
-        //     sum += parseFloat( arrayLt[0][el] );
-        //   }
-        // }
-        
-        // console.log(typeof(arrayLt[0]["LT1"]));
         addRowRLSCD012();
       });
     });
+    
+    function promedioLT(position){ 
+      var data = Object.values(arrayLt[position]);
+      return data;
+    };
+    function dev(arr){
+      // Creating the mean with Array.reduce
+      let mean = arr.reduce((acc, curr)=>{
+        return acc + curr
+      }, 0) / arr.length;
+      
+      // Assigning (value - mean) ^ 2 to every array item
+      arr = arr.map((k)=>{
+        return (k - mean) ** 2
+      })
+      
+      // Calculating the sum of updated array
+      let sum = arr.reduce((acc, curr)=> acc + curr, 0);
+        
+      // Calculating the variance
+      let variance = sum / arr.length
+        
+      // Returning the Standered deviation
+      return Math.sqrt(sum / arr.length)
+    };
+    function precise(x) {
+      return x.toPrecision(4);
+    }
     var LSCD12 = document.createElement('table');
     function createTableRptLSCD012(){
         LSCD12.setAttribute('id', 'TableLSCD12');
@@ -494,7 +519,6 @@
       var tr = empTab.insertRow(rowCnt); 
       var suma_arrays = 0; 
       for (let s = 0; s < jsvar.length; s++) {
-        var lengthLT = Object.keys(arrayLt[s]).length;
         var tr = LSCD12.insertRow(rowCnt);
         var td = document.createElement('td'); 
         for (let c = 0; c < arrHeadLSCD12.length; c++) {
@@ -559,10 +583,67 @@
             ele.appendChild( document.createTextNode( unidad[s]['Unidad']) );
             td.appendChild(ele);
           }
+          if(c == 12) {
+            var ele = document.createElement('p');
+            ele.appendChild( document.createTextNode( promedio[s]['promedio']));
+            td.appendChild(ele);
+          }
+          if(c == 13) {
+            var ele = document.createElement('p');
+            ele.appendChild( document.createTextNode(precise(desv_stand[s]['desv_stand'])));
+            td.appendChild(ele);
+          }
+          if(c == 14) {
+            var ele = document.createElement('p');
+            ele.appendChild( document.createTextNode( precise(desv_stand[s]['desv_stand']/promedio[s]['promedio']*100)));
+            td.appendChild(ele);
+          }
+          if(c == 15) {
+            var ele = document.createElement('p');
+            ele.appendChild( document.createTextNode( factor_k(jsvar[s],unidad[s]['Unidad'], promedio[s]['promedio'])) );
+            td.appendChild(ele);
+          }
           else{            
           }
 
         }
       }    
+    };
+    var conv_u = [1000,1000000,10000,10,0.01,10000,10,1000000];
+    function factor_k (tasaVCV,unidadtasa,promedio){
+      var Factor_K = 0;
+      if (unidadtasa = "µSv") {
+        Factor_K = (tasaVCV/promedio)*conv_u[0];
+      } 
+      if (unidadtasa = "mSv") {
+        Factor_K = (tasaVCV/promedio)*conv_u[1];
+      } 
+      if (unidadtasa = "Sv") {
+        Factor_K = (tasaVCV/promedio)*conv_u[2];
+      } 
+      if (unidadtasa = "R") {
+
+        Factor_K = (tasaVCV/promedio)*conv_u[3];
+      } 
+      if (unidadtasa = "mR") {
+
+        Factor_K = (tasaVCV/promedio)*conv_u[4];
+      } 
+      if (unidadtasa = "µR") {
+
+        Factor_K = (tasaVCV/promedio)*conv_u[5];
+      } 
+      if (unidadtasa = "rem") {
+
+        Factor_K = (tasaVCV/promedio)*conv_u[6];
+      } 
+      if (unidadtasa =   "mrem") {
+
+        Factor_K = (tasaVCV/promedio)*conv_u[7];
+      } 
+      else {
+        Factor_K = "Variable no encontrada";
+      }
+      return Factor_K;
     };
   </script>
