@@ -1,188 +1,154 @@
 
 
   <body onload="createTableLSCD036();createTableLSCD012();createTableRptLSCD012();">
-  <div class="container-fluid" >
-    <div class="row text-center">
-      <div class="col-3 border">
-        <div class="content" style="overflow-x: auto;white-space: nowrap;">
-        <div class="modal-header">
-            <h5 class="modal-title">Respuesta</h5>
-          </div>
-          <form name="formLSCD03" method="POST">
-            <div class="card-body">
-              <div class="author">
-                  <div id="cont" class="table-responsive">
-                  
-                  </div>
-              </div>
-            </div>
-            <div class="card-footer">
-              <a type="button" style="float: right; color:white;" rel="tooltip" onclick="addDosis()" class="btn btn-success " data-original-title="" title="">
-                Añadir Dosis</i>
-              </a>          
-              <input type="hidden" name="consulta" value="tasa_dosis_requerida">          
-              <button type="submit" class="btn btn-primary btn-round" >Guardar</button>   
-          </div>
-          </form>
-        </div>
-      </div>
-      <div class="col-8 border">
-        <div class="content" style="overflow-x: auto;white-space: nowrap;">
+    <div class="container-fluid" >
+      <div class="row text-center">
+        <div class="col-3 border">
+          <div class="content" style="overflow-x: auto;white-space: nowrap;">
           <div class="modal-header">
-            <h5 class="modal-title">Respuesta</h5>
-          </div>
-          <table id="example" class="table table-striped table-bordered" style="width:100%">
-            <thead class="thead-inverse">
-              <tr>
-                <th>Nº Item</th>
-                <th>Tasa de dosis</th>
-                <th>Unidad</th>
-                <th>Combinación de atenuadores</th>
-                <th>Distancia (m)</th>
-              </tr>
-            </thead>
-            <tbody> 
-              <?php                   
-              $ATENUAD = ["SA","V","III","III+V","II+V","II+III","IV","IV+V","III+IV","I+IV","II+IV+V","II+III+IV+V","I+II+III+IV+V"];
-              $DISTANCIA = [0.0374544366961017,0.0139340011717121,0.00596478244898521,0.0022995558436898,0.000928735344622004,0.000400689187922865,0.000245503830168261,0.0000966764175111964,0.0000420792970707922,0.0000187569283718711];
-              if(isset($_POST['tasaVCV'])){
-                $tasaVCV = $_POST['tasaVCV'];
-                  switch ($_POST['consulta']) {
-                    case 'tasa_dosis_requerida':
-                      foreach ($tasaVCV as $key => $value) {
-                        echo '<tr>';
-                        echo '<td>'.$key.'</td>';
-                        echo '<td>'.$value.'</td>';
-                        echo '<td>Sv/h</td>';
-                        if ($value>=number_format("4.16E-03",5) and $value<=number_format("3.75E02",5)) {  
-                          echo '<td>'.$ATENUAD[0].'</td>';
-                          echo '<td>'.number_format(sqrt($DISTANCIA[0]/$value),3).'</td>';
-                        }
-                        elseif ($value>=number_format("2.13E-03",5) and $value<=number_format("6.19E-03",5)) {  
-                          echo '<td>'.$ATENUAD[1].'</td>';
-                          echo '<td>'.number_format(sqrt($DISTANCIA[1]/$value),3).'</td>'; 
-                        }                            
-                        elseif ($value>=number_format("9.54E-04",5) and $value<=number_format("2.65E-03",5)) {   
-                          echo '<td>'.$ATENUAD[2].'</td>';
-                          echo '<td>'.number_format(sqrt($DISTANCIA[2]/$value),3).'</td>';                                    
-                        } 
-                        elseif ($value>=number_format("3.68E-04",5) and $value<=number_format("1.02E-03",5)) {     
-                          echo '<td>'.$ATENUAD[3].'</td>';
-                          echo '<td>'.number_format(sqrt($DISTANCIA[3]/$value),3).'</td>';
-                        } 
-                        elseif ($value>=number_format("1.49E-04",5) and $value<=number_format("4.13E-04",5)) { 
-                          echo '<td>'.$ATENUAD[4].'</td>';
-                          echo '<td>'.number_format(sqrt($DISTANCIA[4]/$value),3).'</td>';                                    
-                        } 
-                        elseif ($value>=number_format("6.41E-05",5) and $value<=number_format("1.78E-04",5)) {  
-                          echo '<td>'.$ATENUAD[5].'</td>';
-                          echo '<td>'.number_format(sqrt($DISTANCIA[5]/$value),3).'</td>';                           
-                        } 
-                        elseif ($value>=number_format("3.93E-05",5) and $value<=number_format("1.09E-04",5)) {  
-                          echo '<td>'.$ATENUAD[6].'</td>';
-                          echo '<td>'.number_format(sqrt($DISTANCIA[6]/$value),3).'</td>';
-                        } 
-                        elseif ($value>=number_format("1.55E-05",5) and $value<=number_format("4.30E-05",5)) {  
-                          echo '<td>'.$ATENUAD[7].'</td>';
-                          echo '<td>'.number_format(sqrt($DISTANCIA[7]/$value),3).'</td>';
-                        } 
-                        elseif ($value>=number_format("6.73E-06",5) and $value<=number_format("1.87E-05",5)) {  
-                          echo '<td>'.$ATENUAD[8].'</td>';
-                          echo '<td>'.number_format(sqrt($DISTANCIA[8]/$value),3).'</td>';
-                        } 
-                        elseif ($value>=number_format("3.00E-06",5) and $value<=number_format("8.34E-06",5)) { 
-                          echo '<td>'.$ATENUAD[9].'</td>';
-                          echo '<td>'.number_format(sqrt($DISTANCIA[9]/$value),3).'</td>';
-                        } 
-                        else {
-                          echo '<td>Tasa de dosis fuera de rango</td>';
-                          echo '<td>Tasa de dosis fuera de rango</td>';
-                        }
-                        echo '</tr>';
-                      };
-                    break;
-                  }
-                }
-              ?>       
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid" >
-    <div class="row text-center">
-        <div class="swiper-slide">
-          <div class="card-body">
-            <div class="card-header">
-              <h5 class="title">Formulario</h5>
+              <h5 class="modal-title">Respuesta</h5>
             </div>
-            <div class="card-body">
-              <div class="author">
-                <div id="contLSCD012" class="table-responsive">
-
+            <form name="formLSCD03" method="POST">
+              <div class="card-body">
+                <div class="author">
+                    <div id="cont" class="table-responsive">
+                    
+                    </div>
                 </div>
               </div>
+              <div class="card-footer">
+                <a type="button" style="float: right; color:white;" rel="tooltip" onclick="addDosis()" class="btn btn-success " data-original-title="" title="">
+                  Añadir Dosis</i>
+                </a>          
+                <input type="hidden" name="consulta" value="tasa_dosis_requerida">          
+                <button type="submit" class="btn btn-primary btn-round" >Guardar</button>   
             </div>
-            <div class="card-footer">      
-              <input type="submit" class="button btn btn-primary btn-round" value="Guardar">
-            </div>
+            </form>
           </div>
         </div>
-    </div>
-  </div>
-  <div class="container-fluid" >
-    <div class="row text-center">
-        <div class="swiper-slide">
-          <div class="card-body">
-            <div class="card-header">
-              <h5 class="title">Respuesta</h5>
+        <div class="col-8 border">
+          <div class="content" style="overflow-x: auto;white-space: nowrap;">
+            <div class="modal-header">
+              <h5 class="modal-title">Respuesta</h5>
             </div>
-            <div class="card-body">
-              <div class="author">
-                <div id="contRLSCD012" class="table-responsive">
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
-      <!-- <div class="content" style="margin-top:7%;" style=" width: 30em;overflow-x: auto;white-space: nowrap;">
-          <div class="modal-header">
-            <h5 class="modal-title">Respuesta</h5>
-          </div>
-          <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
               <thead class="thead-inverse">
-                  <tr>
-                      <th>Nº Item</th>
-                      <th>Tasa VCV</th>
-                      <th>Lectura 1</th>
-                      <th>Lectura 2</th>
-                      <th>Lectura 3</th>
-                      <th>Lectura 4</th>
-                      <th>Lectura 5</th>
-                      <th>Lectura 6</th>
-                      <th>Lectura 7</th>
-                      <th>Lectura 8</th>
-                      <th>Lectura 9</th>
-                      <th>Lectura 10</th>
-                      <th>Lectura min</th>
-                      <th>Unidad</th>
-                      <th>Promedio</th>
-                      <th>D.S.</th>
-                      <th>C.V.</th>
-                      <th>Factor K</th>
-                  </tr>
+                <tr>
+                  <th>Nº Item</th>
+                  <th>Tasa de dosis</th>
+                  <th>Unidad</th>
+                  <th>Combinación de atenuadores</th>
+                  <th>Distancia (m)</th>
+                </tr>
               </thead>
               <tbody> 
-                 
-
+                <?php                   
+                $ATENUAD = ["SA","V","III","III+V","II+V","II+III","IV","IV+V","III+IV","I+IV","II+IV+V","II+III+IV+V","I+II+III+IV+V"];
+                $DISTANCIA = [0.0374544366961017,0.0139340011717121,0.00596478244898521,0.0022995558436898,0.000928735344622004,0.000400689187922865,0.000245503830168261,0.0000966764175111964,0.0000420792970707922,0.0000187569283718711];
+                if(isset($_POST['tasaVCV'])){
+                  $tasaVCV = $_POST['tasaVCV'];
+                    switch ($_POST['consulta']) {
+                      case 'tasa_dosis_requerida':
+                        foreach ($tasaVCV as $key => $value) {
+                          echo '<tr>';
+                          echo '<td>'.$key.'</td>';
+                          echo '<td>'.$value.'</td>';
+                          echo '<td>Sv/h</td>';
+                          if ($value>=number_format("4.16E-03",5) and $value<=number_format("3.75E02",5)) {  
+                            echo '<td>'.$ATENUAD[0].'</td>';
+                            echo '<td>'.number_format(sqrt($DISTANCIA[0]/$value),3).'</td>';
+                          }
+                          elseif ($value>=number_format("2.13E-03",5) and $value<=number_format("6.19E-03",5)) {  
+                            echo '<td>'.$ATENUAD[1].'</td>';
+                            echo '<td>'.number_format(sqrt($DISTANCIA[1]/$value),3).'</td>'; 
+                          }                            
+                          elseif ($value>=number_format("9.54E-04",5) and $value<=number_format("2.65E-03",5)) {   
+                            echo '<td>'.$ATENUAD[2].'</td>';
+                            echo '<td>'.number_format(sqrt($DISTANCIA[2]/$value),3).'</td>';                                    
+                          } 
+                          elseif ($value>=number_format("3.68E-04",5) and $value<=number_format("1.02E-03",5)) {     
+                            echo '<td>'.$ATENUAD[3].'</td>';
+                            echo '<td>'.number_format(sqrt($DISTANCIA[3]/$value),3).'</td>';
+                          } 
+                          elseif ($value>=number_format("1.49E-04",5) and $value<=number_format("4.13E-04",5)) { 
+                            echo '<td>'.$ATENUAD[4].'</td>';
+                            echo '<td>'.number_format(sqrt($DISTANCIA[4]/$value),3).'</td>';                                    
+                          } 
+                          elseif ($value>=number_format("6.41E-05",5) and $value<=number_format("1.78E-04",5)) {  
+                            echo '<td>'.$ATENUAD[5].'</td>';
+                            echo '<td>'.number_format(sqrt($DISTANCIA[5]/$value),3).'</td>';                           
+                          } 
+                          elseif ($value>=number_format("3.93E-05",5) and $value<=number_format("1.09E-04",5)) {  
+                            echo '<td>'.$ATENUAD[6].'</td>';
+                            echo '<td>'.number_format(sqrt($DISTANCIA[6]/$value),3).'</td>';
+                          } 
+                          elseif ($value>=number_format("1.55E-05",5) and $value<=number_format("4.30E-05",5)) {  
+                            echo '<td>'.$ATENUAD[7].'</td>';
+                            echo '<td>'.number_format(sqrt($DISTANCIA[7]/$value),3).'</td>';
+                          } 
+                          elseif ($value>=number_format("6.73E-06",5) and $value<=number_format("1.87E-05",5)) {  
+                            echo '<td>'.$ATENUAD[8].'</td>';
+                            echo '<td>'.number_format(sqrt($DISTANCIA[8]/$value),3).'</td>';
+                          } 
+                          elseif ($value>=number_format("3.00E-06",5) and $value<=number_format("8.34E-06",5)) { 
+                            echo '<td>'.$ATENUAD[9].'</td>';
+                            echo '<td>'.number_format(sqrt($DISTANCIA[9]/$value),3).'</td>';
+                          } 
+                          else {
+                            echo '<td>Tasa de dosis fuera de rango</td>';
+                            echo '<td>Tasa de dosis fuera de rango</td>';
+                          }
+                          echo '</tr>';
+                        };
+                      break;
+                    }
+                  }
+                ?>       
               </tbody>
-          </table>
-      </div> -->
-  </div>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" >
+      <div class="row text-center">
+          <div class="swiper-slide">
+            <div class="card-body">
+              <div class="card-header">
+                <h5 class="title">Formulario</h5>
+              </div>
+              <div class="card-body">
+                <div class="author">
+                  <div id="contLSCD012" class="table-responsive">
+
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">      
+                <input type="submit" class="button btn btn-primary btn-round" value="Guardar">
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="container-fluid" >
+      <div class="row text-center">
+          <div class="swiper-slide">
+            <div class="card-body">
+              <div class="card-header">
+                <h5 class="title">Respuesta</h5>
+              </div>
+              <div class="card-body">
+                <div class="author">
+                  <div id="contRLSCD012" class="table-responsive">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
   </body>
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script>
@@ -429,11 +395,12 @@
   </script>
   <script>
     var arrHeadLSCD12 = new Array();
-    arrHeadLSCD12 = ['Tasa VCV','Lectura 1', 'Lectura 2','Lectura 3', 'Lectura 4', 'Lectura 5', 'Lectura 6', 'Lectura 7', 'Lectura 8', 'Lectura 9', 'Lectura 10', 'Unidad',"Promedio","D.S.","C.V.","Factor K"];
+    arrHeadLSCD12 = ['Tasa VCV','Lectura 1', 'Lectura 2','Lectura 3', 'Lectura 4', 'Lectura 5', 'Lectura 6', 'Lectura 7', 'Lectura 8', 'Lectura 9', 'Lectura 10','Lectura Mínima', 'Unidad',"Promedio","D.S.","C.V.","Factor K"];
     var arrayLt = new Array();
     var unidad = new Array();
     var promedio = new Array();
     var desv_stand = new Array();
+    var lect_min = new Array();
     var suma =0;
     $(function() {
       $(".button").click(function() {
@@ -458,21 +425,30 @@
             var lengthLT = Object.keys(arrayLt[position]).length;
             promedio[position] ={
               "promedio" : (promedioLT(position)[0]+promedioLT(position)[1]+promedioLT(position)[2]+promedioLT(position)[3]+promedioLT(position)[4]+promedioLT(position)[5]+promedioLT(position)[6]+promedioLT(position)[7]+promedioLT(position)[8]+promedioLT(position)[9]).toFixed(2)/lengthLT
-            }
+            };
             desv_stand[position] ={
               "desv_stand" : dev(promedioLT(position))
-            }
-            
-            
-        };
-        addRowRLSCD012();
+            };
+            lect_min[position] ={
+              "lect_min" : (decimales(Math.min.apply(null,promedioLT(position))))
+            };     
+            // console.log(Math.min.apply(null,promedioLT(position)));
+          };
+          addRowRLSCD012();        
+        });
       });
-    });
     
     function promedioLT(position){ 
       var data = Object.values(arrayLt[position]);
       return data;
     };
+
+    function decimales(dato){
+      var decimales = String(dato).split(".");  
+      var minimo = 1/(10**parseInt(decimales.length));   
+      return minimo;
+    }
+
     function dev(arr){
       // Creating the mean with Array.reduce
       let mean = arr.reduce((acc, curr)=>{
@@ -493,9 +469,26 @@
       // Returning the Standered deviation
       return Math.sqrt(sum / arr.length)
     };
+
     function precise(x) {
       return x.toPrecision(4);
     }
+
+    // function minimo(x){
+    //   if (x == 0) {
+    //     x = 1;
+    //   }
+    //   if (x == 1) {
+    //     $minimo = 0.1;
+    //   }
+    //   if (x == 2) {
+    //     $minimo = 0.01;
+    //   }
+    //   else{
+
+    //   }
+    // };
+
     var LSCD12 = document.createElement('table');
     function createTableRptLSCD012(){
         LSCD12.setAttribute('id', 'TableLSCD12');
@@ -513,6 +506,7 @@
         var div = document.getElementById('contRLSCD012');
         div.appendChild(LSCD12);  
     }
+
     function addRowRLSCD012(){
       var empTab = document.getElementById('TableLSCD12');
       var rowCnt = empTab.rows.length;
@@ -580,25 +574,30 @@
           }
           if(c == 11) {
             var ele = document.createElement('p');
-            ele.appendChild( document.createTextNode( unidad[s]['Unidad']) );
+            ele.appendChild( document.createTextNode( lect_min[s]['lect_min']));
             td.appendChild(ele);
           }
           if(c == 12) {
             var ele = document.createElement('p');
-            ele.appendChild( document.createTextNode( promedio[s]['promedio']));
+            ele.appendChild( document.createTextNode( unidad[s]['Unidad']) );
             td.appendChild(ele);
           }
           if(c == 13) {
             var ele = document.createElement('p');
-            ele.appendChild( document.createTextNode(precise(desv_stand[s]['desv_stand'])));
+            ele.appendChild( document.createTextNode( promedio[s]['promedio']));
             td.appendChild(ele);
           }
           if(c == 14) {
             var ele = document.createElement('p');
-            ele.appendChild( document.createTextNode( precise(desv_stand[s]['desv_stand']/promedio[s]['promedio']*100)));
+            ele.appendChild( document.createTextNode((desv_stand[s]['desv_stand']).toFixed(2)));
             td.appendChild(ele);
           }
           if(c == 15) {
+            var ele = document.createElement('p');
+            ele.appendChild( document.createTextNode( (desv_stand[s]['desv_stand']/promedio[s]['promedio']*100).toFixed(2)));
+            td.appendChild(ele);
+          }
+          if(c == 16) {
             var ele = document.createElement('p');
             ele.appendChild( document.createTextNode( factor_k(jsvar[s],unidad[s]['Unidad'], promedio[s]['promedio'])) );
             td.appendChild(ele);
@@ -611,39 +610,46 @@
     };
     var conv_u = [1000,1000000,10000,10,0.01,10000,10,1000000];
     function factor_k (tasaVCV,unidadtasa,promedio){
-      var Factor_K = 0;
-      if (unidadtasa = "µSv") {
+      if (unidadtasa == "µSv") {
         Factor_K = (tasaVCV/promedio)*conv_u[0];
+        return Factor_K;
       } 
-      if (unidadtasa = "mSv") {
+      if (unidadtasa == "mSv") {
         Factor_K = (tasaVCV/promedio)*conv_u[1];
+        return Factor_K;
       } 
-      if (unidadtasa = "Sv") {
+      if (unidadtasa == "Sv") {
         Factor_K = (tasaVCV/promedio)*conv_u[2];
+        return Factor_K;
       } 
-      if (unidadtasa = "R") {
+      if (unidadtasa == "R") {
 
         Factor_K = (tasaVCV/promedio)*conv_u[3];
+        return Factor_K;
       } 
-      if (unidadtasa = "mR") {
+      if (unidadtasa == "mR") {
 
         Factor_K = (tasaVCV/promedio)*conv_u[4];
+        return Factor_K;
       } 
-      if (unidadtasa = "µR") {
+      if (unidadtasa == "µR") {
 
         Factor_K = (tasaVCV/promedio)*conv_u[5];
+        return Factor_K;
       } 
-      if (unidadtasa = "rem") {
+      if (unidadtasa == "rem") {
 
         Factor_K = (tasaVCV/promedio)*conv_u[6];
+        return Factor_K;
       } 
-      if (unidadtasa =   "mrem") {
+      if (unidadtasa == "mrem") {
 
         Factor_K = (tasaVCV/promedio)*conv_u[7];
+        return Factor_K;
       } 
       else {
         Factor_K = "Variable no encontrada";
+        return Factor_K;
       }
-      return Factor_K;
     };
   </script>
