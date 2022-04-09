@@ -1,17 +1,22 @@
-.float-start{
-    float: left;
+.start{
+    position: relative;
+    left: 15px;
+    width: 15%;
 }
 
-.float-end{
-    float: right;
+.end{
+    position: relative;
+    left: 65%;
+    width: 15%;
+    margin-top: 15px;
+
 }
 .content{
-    margin-top: 190px;
+    
 }
 .table{
     text-align: center;
 }
 .image{
-    position: absolute; 
-    margin-top: -180px; width: 100%;
+    width: 100%;
 }
