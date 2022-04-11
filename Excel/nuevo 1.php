@@ -85,6 +85,7 @@ Simbolo
 Tipo Incert
 ["A","B"]
 
+
 Antes del ajuste
 Tasa de dosis VCV (µSv/h) = 25000.00
 Lectura tasa de dosis del monitor (unidad del monitor) = 0.0100
