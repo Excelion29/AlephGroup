@@ -329,9 +329,9 @@ function createTableLSCD012() {
           td.appendChild(ele);
         }  
         if (c == 1) {
-              var ele = document.createElement('p');
-              ele.appendChild( document.createTextNode( jsvar[s] ) );
-              td.appendChild(ele);
+          var ele = document.createElement('p');
+          ele.appendChild( document.createTextNode( jsvar[s] ) );
+          td.appendChild(ele);
         }  
         if(c == 2) {
           var ele = document.createElement('p');
@@ -418,61 +418,119 @@ function createTableLSCD012() {
           ele.appendChild( document.createTextNode( factor_k(jsvar[s],unidad[s]['Unidad'], promedio[s]['promedio'])[1]) );
           td.appendChild(ele);
         }
+        if(c == 19) {
+          var ele = document.createElement('p');
+          td.appendChild(ele);
+        }
+        if(c == 20) {
+          var ele = document.createElement('p');
+          ele.appendChild( document.createTextNode( factor_k(jsvar[s],unidad[s]['Unidad'], promedio[s]['promedio'])[2]) );
+          td.appendChild(ele);
+        }
         else{            
         }
-
       }
     }    
   };
+
   function factor_k (tasaVCV,unidadtasa,promedio){
     if (unidadtasa == "µSv") {
       Factor_K = (tasaVCV/promedio);
-      Var_resp = (promedio/tasaVCV-1)*100;
-      return [Factor_K,(Var_resp.toFixed(0)+"%")];
+      Var_resp = (promedio/tasaVCV-1)*100;  
+      if ( promedio<=(tasaVCV+10/100*tasaVCV) &&  promedio>=(tasaVCV-10/100*tasaVCV) && tasaVCV<=10/100) {
+        test = "ok";
+      } else {
+        test = "out"; 
+      }    
+
+      return [Factor_K,(Var_resp.toFixed(0)+"%"),test];
     } 
     if (unidadtasa == "mSv") {
       Factor_K = tasaVCV/(promedio*conv_u[0]);
       Var_resp = ((promedio*conv_u[0])/tasaVCV-1)*100;
-      return [Factor_K,(Var_resp.toFixed(0)+"%")];
+      if ( promedio<=(tasaVCV+10/100*tasaVCV)*conv_u[0] &&  promedio>=(tasaVCV-10/100*tasaVCV)*conv_u[0] && tasaVCV<=10/100) {
+        test = "ok";
+      } else {
+        test = "out"; 
+      } 
+
+      return [Factor_K,(Var_resp.toFixed(0)+"%"),test];
     } 
     if (unidadtasa == "Sv") {
       Factor_K = tasaVCV/(promedio*conv_u[1]);
       Var_resp = ((promedio*conv_u[1])/tasaVCV-1)*100;
-      return [Factor_K,(Var_resp.toFixed(0)+"%")];
+      if ( promedio<=(tasaVCV+10/100*tasaVCV)*conv_u[1] &&  promedio>=(tasaVCV-10/100*tasaVCV)*conv_u[1] && tasaVCV<=10/100) {
+        test = "ok";
+      } else {
+        test = "out"; 
+      } 
+
+      return [Factor_K,(Var_resp.toFixed(0)+"%")],test;
     } 
     if (unidadtasa == "R") {
   
       Factor_K = tasaVCV/(promedio*conv_u[2]);
       Var_resp = ((promedio*conv_u[2])/tasaVCV-1)*100;
-      return [Factor_K,(Var_resp.toFixed(0)+"%")];
+      if ( promedio<=(tasaVCV+10/100*tasaVCV)*conv_u[2] &&  promedio>=(tasaVCV-10/100*tasaVCV)*conv_u[2] && tasaVCV<=10/100) {
+        test = "ok";
+      } else {
+        test = "out"; 
+      } 
+
+      return [Factor_K,(Var_resp.toFixed(0)+"%"),test];
     } 
     if (unidadtasa == "mR") {
   
       Factor_K = tasaVCV/(promedio*conv_u[3]);
       Var_resp = ((promedio*conv_u[3])/tasaVCV-1)*100;
-      return [Factor_K,(Var_resp.toFixed(0)+"%")];
+      if ( promedio<=(tasaVCV+10/100*tasaVCV)*conv_u[3] &&  promedio>=(tasaVCV-10/100*tasaVCV)*conv_u[3] && tasaVCV<=10/100) {
+        test = "ok";
+      } else {
+        test = "out"; 
+      } 
+
+      return [Factor_K,(Var_resp.toFixed(0)+"%"),test];
     } 
     if (unidadtasa == "µR") {
   
       Factor_K = tasaVCV/(promedio*conv_u[4]);
       Var_resp = ((promedio*conv_u[4])/tasaVCV-1)*100;
-      return [Factor_K,(Var_resp.toFixed(0)+"%")];
+      if ( promedio<=(tasaVCV+10/100*tasaVCV)*conv_u[4] &&  promedio>=(tasaVCV-10/100*tasaVCV)*conv_u[4] && tasaVCV<=10/100) {
+        test = "ok";
+      } else {
+        test = "out"; 
+      } 
+      
+      return [Factor_K,(Var_resp.toFixed(0)+"%"),test];
     } 
     if (unidadtasa == "rem") {
   
       Factor_K = tasaVCV/(promedio*conv_u[5]);
       Var_resp = ((promedio*conv_u[5])/tasaVCV-1)*100;
-      return [Factor_K,(Var_resp.toFixed(0)+"%")];
+      if ( promedio<=(tasaVCV+10/100*tasaVCV)*conv_u[5] &&  promedio>=(tasaVCV-10/100*tasaVCV)*conv_u[5] && tasaVCV<=10/100) {
+        test = "ok";
+      } else {
+        test = "out"; 
+      } 
+
+      return [Factor_K,(Var_resp.toFixed(0)+"%"),test];
     } 
     if (unidadtasa == "mrem") {
   
       Factor_K = tasaVCV/(promedio*conv_u[6]);
       Var_resp = ((promedio*conv_u[6])/tasaVCV-1)*100;
-      return [Factor_K,(Var_resp.toFixed(0)+"%")];
+      if ( promedio<=(tasaVCV+10/100*tasaVCV)*conv_u[6] &&  promedio>=(tasaVCV-10/100*tasaVCV)*conv_u[6] && tasaVCV<=10/100) {
+        test = "ok";
+      } else {
+        test = "out"; 
+      } 
+
+      return [Factor_K,(Var_resp.toFixed(0)+"%"),test];
     } 
     else {
       Factor_K = "Variable no encontrada";
       Var_resp = "Variable no encontrada";
-      return [Factor_K,Var_resp];
+      test = "Variable no encontrada"; 
+      return [Factor_K,Var_resp,test];
     }
   };
