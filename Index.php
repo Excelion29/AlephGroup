@@ -9,9 +9,8 @@
 <?php include_once('./Public/css/data-table.php') ?>
 </head>
 <body onload="createTableLSCD036();createTableLSCD012();createTableRptLSCD012();">
-<?php include_once('./Layouts/navs/siderbar.php'); ?>
-   
-<?php include_once('./Layouts/Footer.php')?>
+    <?php include_once('./Layouts/navs/siderbar.php'); ?>
+    <?php include_once('./Layouts/Footer.php')?>
 </body>
 <?php include_once('./Public/JS/data-table.php') ?>
 </html>
