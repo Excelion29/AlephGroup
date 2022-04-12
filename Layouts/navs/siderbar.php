@@ -13,7 +13,8 @@
                     <?php 
                     if (isset($_POST['tasaVCV'])) {
                         echo '<a onclick="LSCD012()" class="nav_link"> <i class="bx bx-folder nav_icon"></i> <span class="nav_name">F-LSCD-012</span> </a>';  
-                        echo '<a onclick="ICM()" class="nav_link"> <i class="bx bx-folder nav_icon"></i> <span class="nav_name">Insert. Cal. Mon.</span> </a>';                        
+                        echo '<a onclick="FORMLSCD012()" class="nav_link"> <i class="bx bx-folder nav_icon"></i> <span class="nav_name">FORM-LSCD-012</span> </a>';                          
+                        echo '<a onclick="ICM()" class="nav_link"> <i class="bx bx-folder nav_icon"></i> <span class="nav_name">Insert. Cal. Mon.</span> </a>';   
                     } else{
 
                     }
@@ -27,6 +28,7 @@
         <div id="LSCD03"  class="flujo" style="display: block; margin-top:90px;"><?php include_once ('./Functions/F-LSCD-03.php')?></div>
         <div id="LSCD012"  class="flujo" style="display: none; margin-top:90px;"><?php include_once ('./Functions/F-LSCD-012.php')?></div>
         <div id="ICM"  class="flujo" style="display: none; margin-top:90px;"><?php include_once ('./Functions/Insert_Cal_Mon.php')?></div>
+        <div id="FORMLSCD012"  class="flujo" style="display: none; margin-top:90px;"><?php include_once ('./Functions/Form_LSCD-012.php')?></div>
     </div>
   </body>
 <script src="./Public/JS/siderbard.js"></script>
@@ -35,15 +37,24 @@
         document.getElementById("LSCD03").style.display = 'block'; 
         document.getElementById("LSCD012").style.display = 'none'; 
         document.getElementById("ICM").style.display = 'none'; 
+        document.getElementById("FORMLSCD012").style.display = 'none'; 
       };
       function LSCD012() {
         document.getElementById("LSCD03").style.display = 'none'; 
         document.getElementById("LSCD012").style.display = 'block'; 
         document.getElementById("ICM").style.display = 'none'; 
-      }
+        document.getElementById("FORMLSCD012").style.display = 'none'; 
+      };
       function ICM() {
         document.getElementById("LSCD03").style.display = 'none'; 
         document.getElementById("LSCD012").style.display = 'none'; 
         document.getElementById("ICM").style.display = 'block'; 
+        document.getElementById("FORMLSCD012").style.display = 'none'; 
+      };
+      function FORMLSCD012() {
+        document.getElementById("LSCD03").style.display = 'none'; 
+        document.getElementById("LSCD012").style.display = 'none'; 
+        document.getElementById("ICM").style.display = 'none'; 
+        document.getElementById("FORMLSCD012").style.display = 'block'; 
       }
   </script>
