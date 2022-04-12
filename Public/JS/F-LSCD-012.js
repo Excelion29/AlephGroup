@@ -465,7 +465,7 @@ function createTableLSCD012() {
         test = "out"; 
       } 
 
-      return [Factor_K,(Var_resp.toFixed(0)+"%")],test;
+      return [Factor_K,(Var_resp.toFixed(0)+"%"),test];
     } 
     if (unidadtasa == "R") {
   
