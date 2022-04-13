@@ -62,7 +62,8 @@
 				SI(Y(O34*'Datos varios'!$E$122<=(A34+10/100*A34);O34*'Datos varios'!$E$122>=(A34-10/100*A34);T34<=10%);"OK";"OUT");
 				SI(Y(O34*'Datos varios'!$E$123<=(A34+10/100*A34);O34*'Datos varios'!$E$123>=(A34-10/100*A34);T34<=10%);"OK";"OUT");"-");
 		SI(C9="Monitor de radiación (analógico)";
-			ELEGIR(V34;SI(Y(O34<=(A34+10/100*A34);O34>=(A34-10/100*A34);T34<=10%);"OK";"OUT");
+			ELEGIR(V34;
+				SI(Y(O34<=(A34+10/100*A34);O34>=(A34-10/100*A34);T34<=10%);"OK";"OUT");
 				SI(Y(O34*1000<=(A34+10/100*A34);O34*1000>=(A34-10/100*A34);T34<=10%);"OK";"OUT");
 				SI(Y(O34*1000000<=(A34+10/100*A34);O34*1000000>=(A34-10/100*A34);T34<=10%);"OK";"OUT");
 				SI(Y(O34*'Datos varios'!$E$119<=(A34+10/100*A34);O34*'Datos varios'!$E$119>=(A34-10/100*A34);T34<=10%);"OK";"OUT");
@@ -93,6 +94,13 @@ D.S. lecturas monitor = 0.00
 Lectura mínima del monitor = 0.01
 # Lecturas tomados del monitor = 10
 Distancia fuente - monitor(m) = 1.224
+
+["Tasa de dosis VCV (µSv/h)",
+"Lectura tasa de dosis del monitor (unidad del monitor)",
+"D.S. lecturas monitor",
+"Lectura mínima del monitor",
+"# Lecturas tomados del monitor",
+"Distancia fuente - monitor(m)"]
 
 
 
@@ -180,5 +188,11 @@ Calibración de la cinta métrica
 Resolución de la cinta métrica
 Resolución del monitor de radiación
 Coeficiente de conversiónAjuste de la curva de dosimetría
+
+
+
+
+"Sonda: Eje longitudinal del detector paralelo al eje central del haz de radiación / Detector interno: Eje longitudinal del detector transversal al eje central del haz de radiación
+"															
 
 
