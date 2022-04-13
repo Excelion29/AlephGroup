@@ -15,8 +15,23 @@
     
 }
 .table{
-    text-align: center;
+    text-align: left;
 }
 .image{
     width: 100%;
+    border: 2px solid ;
+    min-height: 100%;
 }
+
+body{
+    font-size: 9px;
+}
+html{
+    border: 4px solid ;
+    min-height: 100%;
+}
+footer{
+    border: 2px solid ;
+    min-height: 100%;
+}
+
