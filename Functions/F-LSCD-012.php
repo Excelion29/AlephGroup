@@ -31,7 +31,6 @@
         </div>
     </div>
 </div>
-<script></script>
 <script>  
   var data = '<?=json_encode( $_POST['tasaVCV'] );?>';
 </script>

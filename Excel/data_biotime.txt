@@ -1,0 +1,14 @@
+Usuario
+postgres
+Contraseña
+aleph_group_2022
+
+database
+zkbiotime
+
+
+
+Biotime
+
+Usuario: administrador
+contraseña: @1_bio.*8
