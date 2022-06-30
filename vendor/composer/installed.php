@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'd0be3696b93eed6f50a712d4ea351114c3de18a0',
+        'reference' => '86ca2599aa3d7d0f63e629ee0fa09140d8905ed5',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'd0be3696b93eed6f50a712d4ea351114c3de18a0',
+            'reference' => '86ca2599aa3d7d0f63e629ee0fa09140d8905ed5',
             'dev_requirement' => false,
         ),
         'smalot/pdfparser' => array(
