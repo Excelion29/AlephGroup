@@ -12,6 +12,7 @@ var promedio = new Array();
 var desv_stand = new Array();
 var lect_min = new Array();
 var suma =0;
+
 function createTableLSCD012() {
   var empTable12 = document.createElement('table');
   empTable12.setAttribute('id', 'empTable');
@@ -20,6 +21,7 @@ function createTableLSCD012() {
   empTable12.setAttribute('cellspacing', '0');
   empTable12.setAttribute('width', '100%');
   var tr = empTable12.insertRow(-1);
+
   for (var h = 0; h < arrHead.length; h++) {
     var th = document.createElement('th');
     th.setAttribute('class','col-sm-1');
@@ -39,8 +41,9 @@ function createTableLSCD012() {
     for (let c = 0; c < arrHead.length; c++) {
       td = tr.insertCell(c);
       if (c == 0) {
+        console.log(jsvar[s]);
         var ele = document.createElement('p');
-        ele.appendChild( document.createTextNode( jsvar[s] ) );
+        ele.appendChild( document.createTextNode( jsvar[s]) );
         td.appendChild(ele);
       }  
       if (c == 1){
@@ -53,177 +56,177 @@ function createTableLSCD012() {
         ele.setAttribute('name', 'LT1[]');
         ele.setAttribute('value','0.01');
         td.appendChild(ele);     
-        }
-        if (c == 2){
-          var ele = document.createElement('input');
-          ele.setAttribute('type', 'text');
-          ele.setAttribute('class', 'form-control LT2');
-          ele.setAttribute('placeholder', 'L2');
-          ele.setAttribute('required','true');
-          ele.setAttribute('id', 'LT2'+s);
-          ele.setAttribute('name', 'LT2[]');
-          ele.setAttribute('value','0.01');
-          td.appendChild(ele);           
-        }
-        if (c == 3){
-          var ele = document.createElement('input');
-          ele.setAttribute('type', 'text');
-          ele.setAttribute('class', 'form-control LT3');
-          ele.setAttribute('placeholder', 'L3');
-          ele.setAttribute('required','true');
-          ele.setAttribute('id', 'LT3'+s);
-          ele.setAttribute('name', 'LT3[]');
-          ele.setAttribute('value','0.01');
-          td.appendChild(ele);            
-        }
-        if (c == 4){
-          var ele = document.createElement('input');
-          ele.setAttribute('type', 'text');
-          ele.setAttribute('class', 'form-control LT4');
-          ele.setAttribute('placeholder', 'L4');
-          ele.setAttribute('required','true');
-          ele.setAttribute('id', 'LT4'+s);
-          ele.setAttribute('value','0.01');
-          ele.setAttribute('name', 'LT4[]');
-          td.appendChild(ele);            
-        }
-        if (c == 5){
-          var ele = document.createElement('input');
-          ele.setAttribute('type', 'text');
-          ele.setAttribute('class', 'form-control LT5');
-          ele.setAttribute('placeholder', 'L5');
-          ele.setAttribute('required','true');
-          ele.setAttribute('id', 'LT5'+s);
-          ele.setAttribute('value','0.01');
-          ele.setAttribute('name', 'LT5[]');
-          td.appendChild(ele);            
-        }
-        if (c == 6){
-          var ele = document.createElement('input');
-          ele.setAttribute('type', 'text');
-          ele.setAttribute('class', 'form-control LT6');
-          ele.setAttribute('placeholder', 'L6');
-          ele.setAttribute('required','true');
-          ele.setAttribute('id', 'LT6'+s);
-          ele.setAttribute('name', 'LT6[]');
-          ele.setAttribute('value','0.01');
-          td.appendChild(ele);            
-        }
-        if (c == 7){
-          var ele = document.createElement('input');
-          ele.setAttribute('type', 'text');
-          ele.setAttribute('class', 'form-control LT7');
-          ele.setAttribute('placeholder', 'L7');
-          ele.setAttribute('required','true');
-          ele.setAttribute('id', 'LT7'+s);
-          ele.setAttribute('name', 'LT7[]');
-          ele.setAttribute('value','0.01');
-          td.appendChild(ele);            
       }
-        if (c == 8){
-          var ele = document.createElement('input');
-          ele.setAttribute('type', 'text');
-          ele.setAttribute('class', 'form-control LT8');
-          ele.setAttribute('placeholder', 'L8');
-          ele.setAttribute('required','true');
-          ele.setAttribute('id', 'LT8'+s);
-          ele.setAttribute('name', 'LT8[]');
-          ele.setAttribute('value','0.01');
-          td.appendChild(ele);  
-        }
-        if (c == 9){
-          var ele = document.createElement('input');
-          ele.setAttribute('type', 'text');
-          ele.setAttribute('class', 'form-control LT9');
-          ele.setAttribute('placeholder', 'L9');
-          ele.setAttribute('required','true');
-          ele.setAttribute('id', 'LT9'+s);
-          ele.setAttribute('name', 'LT9[]');
-          ele.setAttribute('value','0.01');
-          td.appendChild(ele);  
-        }
-        if (c == 10){
-          var ele = document.createElement('input');
-          ele.setAttribute('type', 'text');
-          ele.setAttribute('class', 'form-control LT10');
-          ele.setAttribute('placeholder', 'L10');
-          ele.setAttribute('required','true');
-          ele.setAttribute('id', 'LT10'+s);
-          ele.setAttribute('name', 'LT10[]');
-          ele.setAttribute('value','0.01');
-          td.appendChild(ele);  
-        }
-        if (c == 11){
-          var ele = document.createElement('select');
-          ele.setAttribute('required','true');
-          ele.setAttribute('id', 'unidad'+s);
-          ele.setAttribute('name', 'unidad[]');
+      if (c == 2){
+        var ele = document.createElement('input');
+        ele.setAttribute('type', 'text');
+        ele.setAttribute('class', 'form-control LT2');
+        ele.setAttribute('placeholder', 'L2');
+        ele.setAttribute('required','true');
+        ele.setAttribute('id', 'LT2'+s);
+        ele.setAttribute('name', 'LT2[]');
+        ele.setAttribute('value','0.01');
+        td.appendChild(ele);           
+      }
+      if (c == 3){
+        var ele = document.createElement('input');
+        ele.setAttribute('type', 'text');
+        ele.setAttribute('class', 'form-control LT3');
+        ele.setAttribute('placeholder', 'L3');
+        ele.setAttribute('required','true');
+        ele.setAttribute('id', 'LT3'+s);
+        ele.setAttribute('name', 'LT3[]');
+        ele.setAttribute('value','0.01');
+        td.appendChild(ele);            
+      }
+      if (c == 4){
+        var ele = document.createElement('input');
+        ele.setAttribute('type', 'text');
+        ele.setAttribute('class', 'form-control LT4');
+        ele.setAttribute('placeholder', 'L4');
+        ele.setAttribute('required','true');
+        ele.setAttribute('id', 'LT4'+s);
+        ele.setAttribute('value','0.01');
+        ele.setAttribute('name', 'LT4[]');
+        td.appendChild(ele);            
+      }
+      if (c == 5){
+        var ele = document.createElement('input');
+        ele.setAttribute('type', 'text');
+        ele.setAttribute('class', 'form-control LT5');
+        ele.setAttribute('placeholder', 'L5');
+        ele.setAttribute('required','true');
+        ele.setAttribute('id', 'LT5'+s);
+        ele.setAttribute('value','0.01');
+        ele.setAttribute('name', 'LT5[]');
+        td.appendChild(ele);            
+      }
+      if (c == 6){
+        var ele = document.createElement('input');
+        ele.setAttribute('type', 'text');
+        ele.setAttribute('class', 'form-control LT6');
+        ele.setAttribute('placeholder', 'L6');
+        ele.setAttribute('required','true');
+        ele.setAttribute('id', 'LT6'+s);
+        ele.setAttribute('name', 'LT6[]');
+        ele.setAttribute('value','0.01');
+        td.appendChild(ele);            
+      }
+      if (c == 7){
+        var ele = document.createElement('input');
+        ele.setAttribute('type', 'text');
+        ele.setAttribute('class', 'form-control LT7');
+        ele.setAttribute('placeholder', 'L7');
+        ele.setAttribute('required','true');
+        ele.setAttribute('id', 'LT7'+s);
+        ele.setAttribute('name', 'LT7[]');
+        ele.setAttribute('value','0.01');
+        td.appendChild(ele);            
+      }
+      if (c == 8){
+        var ele = document.createElement('input');
+        ele.setAttribute('type', 'text');
+        ele.setAttribute('class', 'form-control LT8');
+        ele.setAttribute('placeholder', 'L8');
+        ele.setAttribute('required','true');
+        ele.setAttribute('id', 'LT8'+s);
+        ele.setAttribute('name', 'LT8[]');
+        ele.setAttribute('value','0.01');
+        td.appendChild(ele);  
+      }
+      if (c == 9){
+        var ele = document.createElement('input');
+        ele.setAttribute('type', 'text');
+        ele.setAttribute('class', 'form-control LT9');
+        ele.setAttribute('placeholder', 'L9');
+        ele.setAttribute('required','true');
+        ele.setAttribute('id', 'LT9'+s);
+        ele.setAttribute('name', 'LT9[]');
+        ele.setAttribute('value','0.01');
+        td.appendChild(ele);  
+      }
+      if (c == 10){
+        var ele = document.createElement('input');
+        ele.setAttribute('type', 'text');
+        ele.setAttribute('class', 'form-control LT10');
+        ele.setAttribute('placeholder', 'L10');
+        ele.setAttribute('required','true');
+        ele.setAttribute('id', 'LT10'+s);
+        ele.setAttribute('name', 'LT10[]');
+        ele.setAttribute('value','0.01');
+        td.appendChild(ele);  
+      }
+      if (c == 11){
+        var ele = document.createElement('select');
+        ele.setAttribute('required','true');
+        ele.setAttribute('id', 'unidad'+s);
+        ele.setAttribute('name', 'unidad[]');
 
-          var OPT0 = document.createElement('option');
-          OPT0.setAttribute('selected', 'selected');
-          OPT0.setAttribute('value','');
-          OPT0.setAttribute('disabled','true');
+        var OPT0 = document.createElement('option');
+        OPT0.setAttribute('selected', 'selected');
+        OPT0.setAttribute('value','');
+        OPT0.setAttribute('disabled','true');
 
-          var OPT1 = document.createElement('option');
-          OPT1.setAttribute('value','µSv');
+        var OPT1 = document.createElement('option');
+        OPT1.setAttribute('value','µSv');
 
-          var OPT2 = document.createElement('option');
-          OPT2.setAttribute('value','mSv');
+        var OPT2 = document.createElement('option');
+        OPT2.setAttribute('value','mSv');
 
-          var OPT3 = document.createElement('option');
-          OPT3.setAttribute('value','Sv');
+        var OPT3 = document.createElement('option');
+        OPT3.setAttribute('value','Sv');
 
-          var OPT4 = document.createElement('option');
-          OPT4.setAttribute('value','R');
+        var OPT4 = document.createElement('option');
+        OPT4.setAttribute('value','R');
 
-          var OPT5 = document.createElement('option');
-          OPT5.setAttribute('value','mR');
+        var OPT5 = document.createElement('option');
+        OPT5.setAttribute('value','mR');
 
-          var OPT6 = document.createElement('option');
-          OPT6.setAttribute('value','µR');
+        var OPT6 = document.createElement('option');
+        OPT6.setAttribute('value','µR');
 
-          var OPT7 = document.createElement('option');
-          OPT7.setAttribute('value','rem');
+        var OPT7 = document.createElement('option');
+        OPT7.setAttribute('value','rem');
 
-          var OPT8 = document.createElement('option');
-          OPT8.setAttribute('value','mrem');
+        var OPT8 = document.createElement('option');
+        OPT8.setAttribute('value','mrem');
 
-          OPT0.appendChild( document.createTextNode( 'Selected' ) );
-          OPT1.appendChild( document.createTextNode( 'µSv' ) );
-          OPT2.appendChild( document.createTextNode( 'mSv' ) );
-          OPT3.appendChild( document.createTextNode( 'Sv' ) );
-          OPT4.appendChild( document.createTextNode( 'R' ) );
-          OPT5.appendChild( document.createTextNode( 'mR' ) );
-          OPT6.appendChild( document.createTextNode( 'µR' ) );
-          OPT7.appendChild( document.createTextNode( 'rem' ) );
-          OPT8.appendChild( document.createTextNode( 'mrem' ) );
+        OPT0.appendChild( document.createTextNode( 'Selected' ) );
+        OPT1.appendChild( document.createTextNode( 'µSv' ) );
+        OPT2.appendChild( document.createTextNode( 'mSv' ) );
+        OPT3.appendChild( document.createTextNode( 'Sv' ) );
+        OPT4.appendChild( document.createTextNode( 'R' ) );
+        OPT5.appendChild( document.createTextNode( 'mR' ) );
+        OPT6.appendChild( document.createTextNode( 'µR' ) );
+        OPT7.appendChild( document.createTextNode( 'rem' ) );
+        OPT8.appendChild( document.createTextNode( 'mrem' ) );
 
-          ele.appendChild(OPT0);
-          ele.appendChild(OPT1);
-          ele.appendChild(OPT2);
-          ele.appendChild(OPT3);
-          ele.appendChild(OPT4);
-          ele.appendChild(OPT5);
-          ele.appendChild(OPT6);
-          ele.appendChild(OPT7);
-          ele.appendChild(OPT8);
+        ele.appendChild(OPT0);
+        ele.appendChild(OPT1);
+        ele.appendChild(OPT2);
+        ele.appendChild(OPT3);
+        ele.appendChild(OPT4);
+        ele.appendChild(OPT5);
+        ele.appendChild(OPT6);
+        ele.appendChild(OPT7);
+        ele.appendChild(OPT8);
 
 
-          td.appendChild(ele); 
-          for (let index = 1; index <=10; index++) {
-            $("input.LT"+index).bind('keypress', function(event) {
-              var regex = new RegExp("^[0-9|\./]+$");
-              var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-              if (!regex.test(key)) {
-                event.preventDefault();
-                return false;
-              }
-            });
-          };
-        }
+        td.appendChild(ele); 
+        for (let index = 1; index <=10; index++) {
+          $("input.LT"+index).bind('keypress', function(event) {
+            var regex = new RegExp("^[0-9|\./]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+              event.preventDefault();
+              return false;
+            }
+          });
+        };
       }
     }
-  };
+  }
+};
   
   $(function() {
     $(".button").click(function() {
@@ -330,7 +333,7 @@ function createTableLSCD012() {
         }  
         if (c == 1) {
           var ele = document.createElement('p');
-          ele.appendChild( document.createTextNode( jsvar[s] ) );
+          ele.appendChild( document.createTextNode( jsvar[s]) );
           td.appendChild(ele);
         }  
         if(c == 2) {
@@ -426,8 +429,6 @@ function createTableLSCD012() {
           var ele = document.createElement('p');
           ele.appendChild( document.createTextNode( factor_k(jsvar[s],unidad[s]['Unidad'], promedio[s]['promedio'])[2]) );
           td.appendChild(ele);
-        }
-        else{            
         }
       }
     }    

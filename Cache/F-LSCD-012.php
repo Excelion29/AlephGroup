@@ -111,7 +111,7 @@
 
                               }
                               $promedio = array_sum($LTS)/count($LTS);
-
+                              // Multiplicar por 1000 concatenar con micro siver hora
                               $desv_stand = number_format(getVariance($promedio,$LTS),2);
                               $CV = number_format(($desv_stand/$promedio*100),2);
                               $Factor_K = $conv_u[0];

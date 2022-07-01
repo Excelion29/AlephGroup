@@ -28,10 +28,7 @@
                     $DISTANCIA = [0.0374544366961017,0.0139340011717121,0.00596478244898521,0.0022995558436898,0.000928735344622004,0.000400689187922865,0.000245503830168261,0.0000966764175111964,0.0000420792970707922,0.0000187569283718711];
                     
                     for ($i=1; $i <= 12; $i++) { 
-                        echo 
-                        '<form method="post"> 
-                            <tr> 
-                                <td>'.$i.'</td>'
+                        echo '<form method="post"> <tr> <td>'.$i.'</td>'
                                 ?>
                                     <td>
                                         <input type="text" name="tasa_dosis<?php echo $i ?>" id="tasa_dosis<?php echo $i ?>" class="form-control" placeholder="Tasa de dosis" value="-" aria-describedby="helpId" required>
@@ -108,7 +105,7 @@
                                         break;
                                     };
                                 ?>
-                            };
+                            }
             </tbody>
         </table>
     </div>
